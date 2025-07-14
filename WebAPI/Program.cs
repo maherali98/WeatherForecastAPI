@@ -1,4 +1,4 @@
-using Application.Interfaces;
+﻿using Application.Interfaces;
 using Infrastructure.Auth;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -14,15 +14,13 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Weather API", Version = "v1" });
 
-    // Add JWT Authentication to Swagger
+    
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Name = "Authorization",
         In = ParameterLocation.Header,
-        Type = SecuritySchemeType.Http,
-        Scheme = "Bearer",
-        BearerFormat = "JWT",
-        Description = "Enter 'Bearer' followed by your JWT token in the text box.\r\n\r\nExample: \"Bearer eyJhbGciOi...\""
+        Type = SecuritySchemeType.ApiKey, 
+        Description = "Enter 'Bearer' followed by your JWT token.\r\nExample: Bearer eyJhbGciOi..."
     });
 
     c.AddSecurityRequirement(new OpenApiSecurityRequirement
@@ -33,13 +31,14 @@ builder.Services.AddSwaggerGen(c =>
                 Reference = new OpenApiReference
                 {
                     Type = ReferenceType.SecurityScheme,
-                    Id = "Bearer"
+                    Id = "Bearer" 
                 }
             },
             Array.Empty<string>()
         }
     });
 });
+
 // Add services
 builder.Services.AddControllers();
 builder.Services.AddMemoryCache();

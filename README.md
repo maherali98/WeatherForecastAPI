@@ -72,7 +72,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR...
 ### 🛠️ Steps
 
 ```bash
-git clone https://github.com/your-username/weather-api.git
+git clone https://github.com/maherali98/WeatherForecastAPI.git
 cd weather-api
 dotnet build
 dotnet run --project WebAPI
